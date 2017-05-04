@@ -3,7 +3,7 @@
 #include <cstring>
 #include "fgvheader.h"
 
-       Sztring::Sztring(char const *szoveg = "") {
+       Sztring::Sztring(char const *szoveg) {
             hossz = strlen(szoveg);
             adat = new char[hossz+1];
             strcpy(adat, szoveg);
@@ -21,7 +21,7 @@
         }
 
 
-        Sztring::Sztring & operator=(Sztring const & orig) {
+        Sztring& Sztring::operator=(Sztring const & orig) {
             if (this != &orig) {
                 delete[] adat;
                 hossz = orig.hossz;
@@ -31,20 +31,20 @@
             return *this;
         }
 
-        Sztring::size_t size() const {
+        size_t Sztring:: size() const {
             return hossz;
         }
 
-       Sztring:: char const & operator[] (size_t idx) const {
+       char const & Sztring::operator[] (size_t idx) const {
             return adat[idx];
         }
 
-        Sztring::char & operator[] (size_t idx) {
+        char & Sztring::operator[] (size_t idx) {
             return adat[idx];
         }
 
 
-        Sztring::Sztring operator+(Sztring const & rhs) const {
+        Sztring Sztring::operator+(Sztring const & rhs) const {
             Sztring uj;
             delete[] uj.adat;
             uj.hossz = this->hossz + rhs.hossz;
@@ -55,7 +55,7 @@
         }
 
 
-std::ostream & operator<<(std::ostream & os, const Sztring & s) {
+std::ostream& operator<<(std::ostream & os, const Sztring & s) {
     for (size_t i = 0; i != s.size(); ++i)
         os << s[i];
     return os;
@@ -63,66 +63,74 @@ std::ostream & operator<<(std::ostream & os, const Sztring & s) {
 
 
 
-Szemely:: void kiir(std::ostream& os){
-    os<<this->nev<<std::endl();
-    os<<this->iranyitoszam<<std::endl();
-    os<<this->varos<<std::endl();
-    os<<this->utca<<std::endl();
-    os<<this->hazszam<<std::endl();
-    os<<this->munkahelyiszam<<std::endl();
-    os<<this->becenev<<std::endl();
-	os<<this->privatszam<<std::endl();string
+ void Szemely::kiir(std::ostream& os){
+    os<<this->getTipus()<<std::endl;
+    os<<this->getNev()<<std::endl;
+    os<<this->getIszam()<<std::endl;
+    os<<this->getVaros()<<std::endl;
+    os<<this->getUtca()<<std::endl;
+    os<<this->getHszam()<<std::endl;
+    os<<this->getMszam()<<std::endl;
+    os<<this->getBnev()<<std::endl;
+	os<<this->getPszam()<<std::endl;
+	os<<std::endl;
 
 };
-Ceg:: void kiir(std::ostream& os){
-    os<<this->nev<<std::endl();
-    os<<this->iranyitoszam<<std::endl();
-    os<<this->varos<<std::endl();
-    os<<this->utca<<std::endl();
-    os<<this->hazszam<<std::endl();
-    os<<this->munkahelyiszam<<std::endl();
-    os<<this->alapitasiev<<std::endl();
-	os<<this->dolgozokszama<<std::endl();
+ void Ceg::kiir(std::ostream& os){
+    os<<this->getTipus()<<std::endl;
+    os<<this->getNev()<<std::endl;
+    os<<this->getIszam()<<std::endl;
+    os<<this->getVaros()<<std::endl;
+    os<<this->getUtca()<<std::endl;
+    os<<this->getHszam()<<std::endl;
+    os<<this->getMszam()<<std::endl;
+    os<<this->getAlapitas()<<std::endl;
+	os<<this->getDszam()<<std::endl;
+	os<<std::endl;
 
 };
 
-Szemely:: ~Szemely(){
-	nev.~Sztring();
-    varos.~Sztring();
-    utca.~Sztring();
-    becenev.~Sztring();
+ /*
+* kiir egy adatot egy os re
+* a kiir fgv-t használja mi az adat virtuális tagja, és így az adat* típusú heterogén kollekció adatait különbözõ módon írja ki
+*/
+std::ostream& operator<< (std::ostream& os, Adat* kiirando){
 
-}
-Ceg:: ~Ceg(){
-	nev.~Sztring();
-    varos.~Sztring();
-    utca.~Sztring();
-}
+ kiirando->kiir(os);
+ return os;
 
+ }
 
-Lista::size_t ujrekord (Adat* hozzad){
+/*
+* a listához új rekordot ad, ezt használja a fõmenu ujrekord függvénye
+*/
+
+void Lista::ujrekord (Adat* hozzaad){
 	 Adat* uj = new Adat[++meret];
-	 for (size_t s =0, s< meret; s++){
+	 for (size_t s =0; s <= meret; s++){
 		 uj[s] = this[s];
 	 }
 	 uj[meret] = hozzaad;
 	 Adat* temp = this->eleje;
 	 delete[] temp;
 	 this->eleje = uj;
-	 return this-> meret;
+
 	}
+
+void Lista::torol(Sztring torolni){
+};
 
 /*
 * Indexelõ operátor a Lista használatához
 */
-Lista:: Adat* operator[] (size_t i) {
+Adat* Lista:: operator[] (size_t i) {
 	return this->eleje[i];
 	}
-Lista :: void torol (Sztring torolni)
+void Lista ::torol (Sztring torolni)
 /*
 * beolvassa az adatokat a backupfile.txt fájlból és eltárolja õket egy Lista-ban
 */
- Lista::void beolvas(ifstream backupfile ) {
+void Lista::beolvas(ifstream backupfile ) {
     backupfile.open ("backup.txt");
     if (!backupfile) {
     std::cerr << "Nincs mentett telefonkönyved!";
@@ -137,39 +145,12 @@ Lista :: void torol (Sztring torolni)
     backupfile.close();
   }
 }
+
 /*
-*
+* egy bizonyos nevû adatot torol a listáról
+* KÉSZ
 */
-
- Lista::void mentes(ofstream backupfile){
-	 backupfile.open("backup.txt");
-	 for( size_t i=0; i<= this->meret;i++){
-
-	 }
-
-	 }
-
-
- /*
-* kiir egy adatot egy os re
-*/
-std::ostream& operator<< (std::ostream& os, Adat* kiirando){
-
- kiirando.kiir(os);
- return os;
-
- }
-/*
-* kiirja egy os-re a megadott szemely* attribútumait
-*/
-
- void kereses(Lista listam){
-
-}
-/*
-*
-*/
-void torles(Lista listam){
+void torles(Lista& listam){
 	Sztring s1;
 	std::cout<<"Milyen rekordot szeretne torolni? Adja meg a szemelyhez tartozo becvenevet!"<<std::cout;
 	std::cin>>s1;
@@ -179,9 +160,14 @@ void torles(Lista listam){
 
 }
 /*
-*
+* egy std::ostream típusú objektumra írja a lista tartalmát
+* KÉSZ
 */
-void listazas(Lista listam){
+void Lista::listazas(std::ostream& os){
+ 	for (size_t size = 0; size<= this->meret ; size++){
+		os<<this->eleje[size];
+
+		}
 
 }
 /*
@@ -189,32 +175,35 @@ void listazas(Lista listam){
 * KÉSZ
 */
 
-void ujrekord(Lista listam) {
-	std::cout<<"Mi legyen az uj szemely beceneve?"<<std::endl;
-	Sztring s1;
-	std::cin>>s1;
-	Adat* hozzaad = new Adat(s1);
-	size_t vege = listam.ujrekord(hozzaad);
-
-	Sztring s2;
-	std::cout<<"Mi legyen az uj szemely vezetekneve?"<<std::endl;
-	std::cin>>s1;
-	std::cout<<"Mi legyen az uj szemely keresztneve?"<<std::endl;
-	std::cin>>s2;
-
-	setNev.listam[vege](s1,s2);
-
-	int i1, i2;
-	std::cout<<"Mi legyen az uj szemely cime?"<<std::endl<<"Iranyitoszam?"<<std::endl;
+void ujrekord(Lista& listam) {
+	int i1;
+	std::cout<<"Ceget (0) vagy szemelyt (1) szeretne felvenni?"<<std::endl;
 	std::cin>>i1;
+	Sztring s1;
+	std::cout<<"Nev?"<<std::endl;
+	std::cin>>s1;
+	if (i1){
+		Adat* hozzaad = new Szemely(s1);
+
+	} else {
+		Adat* hozzaad = new Ceg(s1);
+		}
+	hozzad->setTipus(i1);
+
+	std::cout<<<<"Iranyitoszam?"<<std::endl;
+	std::cin>>i1;
+	hozzaad->setIszam(i1);
 	std::cout<<"Varos?"<<std::endl;
 	std::cin>>s1;
+	hozzaad->setVaros(s1);
 	std::cout<<"Utca?"<<std::endl;
-	std::cin>>s2;
+	std::cin>>s1;
+	hozzaad->setUtca(s1);
 	std::cout<<"Hazszam?"<<std::endl;
-	std::cin>>i2;
+	std::cin>>i1;
+	hozzaad->setHszam(i1);
 
-	setCim.listam[vege](i1, s1,s2,i2);
+	listam.ujrekord(hozzaad);
 
 	std::cout<<"Uj nevjegy letrehozva"<<std:endl<<listam[vege]<<std:endl;
 }

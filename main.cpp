@@ -16,8 +16,7 @@ int main()
     << "1.Uj nevjegy felvetele"<<std::endl
     << "2.Nevjegyek listazasa"<<std::endl
     << "3.Nevjegy törlese"<<std::endl
-    << "4.Kereses"<<std::endl
-    << "5.Kilepes"<<std::endl;
+    << "4.Kilepes"<<std::endl;
 
     int x;
     switch(x):
@@ -25,21 +24,19 @@ int main()
         ujrekord(listam);
         break;
     case 2:
-        listazas(listam);
+        listam.listazas(std::cout);
         break;
     case 3:
         torles(listam);
         break;
-    case 4:
-        kereses(listam);
+    case 4: 
         break;
-    case 5:
-        break;
+    
 
     std::cout<<"Viszontlatasra"<std::endl;
     ofstream bpfile;
-    listam.mentes(bpfile);
-
+    bpfile.open("backup.txt");
+	listam.listazas(bpfile);
     }
   /*  catch {
     }
