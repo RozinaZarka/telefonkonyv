@@ -111,8 +111,7 @@ void Lista::ujrekord (Adat* hozzaad){
 		 uj[s] = this[s];
 	 }
 	 uj[meret] = hozzaad;
-	 Adat* temp = this->eleje;
-	 delete[] temp;
+	 delete[] this->eleje;
 	 this->eleje = uj;
 
 	}
