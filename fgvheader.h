@@ -55,7 +55,7 @@ public:
 	void setHszam(int i) {this->hazszam = i;}
 	void setIszam(int i) {this->iranyitoszam = i;}
 	void setMszam(int i) {this->munkahelyiszam = i;}
-    virtual void kiir(std::ostream& os) =0;
+    virtual void kiir(std::ostream& os)=0;
     virtual void setDszam(int i) {} ;
     virtual int getDszam() {};
     virtual void setAlapitas(int i){};
@@ -104,14 +104,16 @@ class Lista {
   Adat** eleje;
   size_t meret;
 public:
-	Lista();
+	Lista(size_t defmeret = 0);
 	void beolvas (std::ifstream backupfile);
-	void torol(Sztring torolni);
+	bool torol(Sztring torolni);
 	size_t getMeret() {return this->meret;}
+	Adat** getEleje (){return this->eleje;}
 	// viszaadja az új rekord indexét
 	void ujrekord (Adat* hozzad);
 	Adat* operator[] (size_t i);
-	void listazas (std::ostream& os);
+	//void kiir (std::ostream& os);
+
 	~Lista();
 
 
@@ -119,6 +121,7 @@ public:
 
 
 std::ostream& operator<< (std::ostream& os, Adat* kiirando);
+std:: ostream& operator<< (std::ostream& os, Lista& lista);
 
 void ujrekord(Lista& listam);
 

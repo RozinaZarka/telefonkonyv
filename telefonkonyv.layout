@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="fgvheader.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2560" topLine="58" />
-		</Cursor>
-	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="842" topLine="0" />
+			<Cursor1 position="89" topLine="4" />
 		</Cursor>
 	</File>
-	<File name="fgv.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="fgv.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4263" topLine="109" />
+			<Cursor1 position="4062" topLine="58" />
 		</Cursor>
 		<Folding>
-			<Collapse line="16" />
-			<Collapse line="26" />
-			<Collapse line="30" />
-			<Collapse line="35" />
-			<Collapse line="68" />
-			<Collapse line="81" />
+			<Collapse line="6" />
+			<Collapse line="13" />
+			<Collapse line="21" />
+			<Collapse line="33" />
+			<Collapse line="38" />
+			<Collapse line="44" />
+			<Collapse line="56" />
+			<Collapse line="63" />
+			<Collapse line="70" />
+			<Collapse line="76" />
+			<Collapse line="82" />
+			<Collapse line="97" />
+			<Collapse line="114" />
+			<Collapse line="120" />
+			<Collapse line="134" />
+			<Collapse line="200" />
+			<Collapse line="280" />
 		</Folding>
+	</File>
+	<File name="fgvheader.h" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1812" topLine="16" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
