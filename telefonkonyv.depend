@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1494083921 source:f:\programok\c(++)\telefonkonyv\fgv.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"fgvheader.h"
+
+1494084234 f:\programok\c(++)\telefonkonyv\fgvheader.h
+	<fstream>
+	<iostream>
+	<cstring>
+
+1494067088 source:f:\programok\c(++)\telefonkonyv\main.cpp
+	<iostream>
+	<fstream>
+	"fgvheader.h"
+
+1494065398 f:\programok\c(++)\telefonkonyv\fgv.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"fgvheader.h"
+

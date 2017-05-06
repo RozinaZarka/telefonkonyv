@@ -12,20 +12,25 @@ class Sztring {
 
     public:
         Sztring(char const *szoveg = "");
-        ~Sztring() ;
+        ~Sztring()  { delete[] adat; }
+        char* getAdat() {return this->adat;}
+        void setHossz(size_t s) {this->hossz =s;}
         Sztring(Sztring const & orig) ;
         Sztring & operator=(Sztring const & orig);
         size_t size() const ;
         char const & operator[] (size_t idx) const ;
-        char & operator[] (size_t idx) ;
+        char & operator[] (size_t idx){ return adat[idx];}
         Sztring operator+(Sztring const & rhs) const;
 };
 
 std::ostream & operator<<(std::ostream & os, const Sztring & s);
+std::istream & operator>>(std::istream & os, const Sztring & s);
+
 
 
 class Adat {
-  int tipus;
+
+  int tipus; // 0 vagy 1 : Személy vagy cég
   Sztring nev;
   Sztring varos;
   Sztring utca;
@@ -43,6 +48,7 @@ public:
     int getTipus() { return this->tipus; }
     int getMszam() {return this->munkahelyiszam;}
 
+	void setTipus(int i) { this->tipus = i; }
 	void setNev(Sztring s) {this->nev = s;}
 	void setVaros(Sztring s) {this->varos = s;}
 	void setUtca(Sztring s) {this->utca = s;}
@@ -50,6 +56,17 @@ public:
 	void setIszam(int i) {this->iranyitoszam = i;}
 	void setMszam(int i) {this->munkahelyiszam = i;}
     virtual void kiir(std::ostream& os) =0;
+    virtual void setDszam(int i) {} ;
+    virtual int getDszam() {};
+    virtual void setAlapitas(int i){};
+    virtual int getAlapitas(){} ;
+    virtual void setPszam(int i){};
+    virtual int getPszam(){};
+    virtual void setBnev(Sztring s){} ;
+    virtual Sztring getBnev(){};
+
+    virtual ~Adat() {};
+    //Adat& operator= (const Adat&);
 
 
 
@@ -60,27 +77,31 @@ public:
 	 int privatszam;
 
 	 public:
-     virtual void kiir(std::ostream& os);
+     Szemely(Sztring s1 = "" ):Adat(s1){};
      void setPszam(int i) { this->privatszam = i;}
      int getPszam() {return this->privatszam;}
      void setBnev(Sztring s) { this->becenev = s;}
      Sztring getBnev() { return this->becenev; }
+    void kiir(std::ostream& os);
+    ~Szemely() {};
  };
 
  class Ceg : public Adat{
 	 int alapitasiev;
 	 int dolgozokszama;
 public:
-    virtual void kiir(std::ostream& os);
+    Ceg(Sztring s1 = "" ):Adat(s1){};
     void setDszam(int i) { this->dolgozokszama = i;}
      int getDszam() {return this->dolgozokszama;}
      void setAlapitas(int i) { this->alapitasiev = i;}
      int getAlapitas() {return this->alapitasiev;}
+     void kiir(std::ostream& os);
+     ~Ceg() {};
 
 };
 
 class Lista {
-  Adat* eleje;
+  Adat** eleje;
   size_t meret;
 public:
 	Lista();
