@@ -154,13 +154,17 @@ Adat* Lista:: operator[] (size_t i)
 void Lista::ujrekord (Adat* hozzaad)
 {
     Adat** uj = new Adat*[this->meret+1];
-    if(this->meret >0) for (size_t s =0; s < this->meret; s++){
+    if(this->meret > 0){
+        for (size_t s = 0; s <= this->meret; s++){
         uj[s] = this->tomb[s];
         delete this->tomb[s];
     }
+
+    }
     delete[] this->tomb;
     this->tomb = uj;
-    this->tomb[this->meret++] = hozzaad;
+    this->meret = this->meret +1;
+    this->tomb[this->meret] = hozzaad;
 
 }
 
@@ -180,8 +184,8 @@ void Lista::torol(Sztring& torolni)
                         for (size_t t = 0; t < this->meret; t++){
 
                             if (s == t){
-                                t++;
                                 delete this->tomb[t];
+                                 t++;
                             }  // kivéve amit torolni akarok
                             uj[t] = this->tomb[t];
                             delete this->tomb[t];
@@ -281,11 +285,12 @@ void ujrekord(Lista& listam)
     std::cout<<"Ceget (0) vagy szemelyt (1) szeretne felvenni?"<<std::endl;
     std::cin>>i1;
     Sztring s1;
-    Adat* hozzaad = new Ceg;
+    Adat* hozzaad = nullptr;
     if (i1)
     {
-        delete hozzaad;
         hozzaad = new Szemely;
+    } else {
+        hozzaad = new Ceg;
     }
     hozzaad->setTipus(i1);
 
