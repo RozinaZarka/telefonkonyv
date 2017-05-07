@@ -187,7 +187,7 @@ class Lista
 public:
     Lista();
     void beolvas (std::ifstream backupfile);
-    bool torol(Sztring torolni);
+    void torol(Sztring torolni);
     size_t getMeret()
     {
         return this->meret;

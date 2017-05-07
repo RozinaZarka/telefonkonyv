@@ -7,12 +7,12 @@
 	"gtest_lite.h"
 	"fgvheader.h"
 
-1494159127 f:\programok\c(++)\telefonkonyv\fgvheader.h
+1494160932 f:\programok\c(++)\telefonkonyv\fgvheader.h
 	<fstream>
 	<iostream>
 	<cstring>
 
-1494154428 source:f:\programok\c(++)\telefonkonyv\main.cpp
+1494159848 source:f:\programok\c(++)\telefonkonyv\main.cpp
 	<iostream>
 	<fstream>
 	<exception>

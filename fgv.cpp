@@ -144,7 +144,6 @@ std:: ostream& operator<< (std::ostream& os, Lista& listam)
 *KESZ
 */
 void Lista::ujrekord (Adat* hozzaad)
-
 {
     Adat** uj = new Adat*[this->meret+1];
     if(this->meret >0) for (size_t s =0; s < this->meret; s++) uj[s] = this->eleje[s];
@@ -154,7 +153,7 @@ void Lista::ujrekord (Adat* hozzaad)
 
 }
 
-bool Lista::torol(Sztring torolni)
+void Lista::torol(Sztring torolni)
 {
     for (size_t s =0; s<=this->meret; s++)
     {
@@ -179,10 +178,12 @@ bool Lista::torol(Sztring torolni)
                 this->eleje[0] = new Szemely;
             }
             this->meret--;
-            return 1;
+
+        } else {
+          //  throw std::exception;
         }
     }
-    return 0;
+
 }
 
 /*
@@ -209,8 +210,8 @@ void torles(Lista& listam)
     Sztring s1;
     std::cout<<"Milyen rekordot szeretne torolni? Adja meg a nevet!"<<std::cout;
     std::cin>>s1;
-    if(listam.torol(s1)) std::cout<<"rekord torolve"<<std::endl;
-    else std::cout<<"nincs ilyen rekord"<<std::endl;
+    std::cout<<"rekord torolve"<<std::endl;
+
 
 }
 
@@ -283,7 +284,7 @@ void ujrekord(Lista& listam)
     }
 
     listam.ujrekord(hozzaad);
-    delete hozzaad;
+
     std::cout.flush();
     std::cout<<"Uj nevjegy letrehozva"<<std::endl;
 }
