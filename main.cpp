@@ -16,14 +16,15 @@ int main()
     listam.beolvas(backupfile);
     */
     char x = 'l';
-    while (!(x == 'k' || x== 'K' || x == '\032') )
+    while (!(x == 'e' || x== 'E' || x == '\032') )
     {
 
         std::cout<< "Mit szeretnel tenni?"<<std::endl
                  << "(U) Uj nevjegy felvetele"<<std::endl
                  << "(L) Nevjegyek listazasa"<<std::endl
+                 << "(K) Nevjegy keresese"<<std::endl
                  << "(T) Nevjegy torlese"<<std::endl
-                 << "(K) Kilepes"<<std::endl;
+                 << "(E) Kilepes"<<std::endl;
                  std::cout.flush();
         std::cin>>x;
 
@@ -44,6 +45,10 @@ int main()
             break;
         case 'k':
         case 'K':
+            kereses(listam);
+            break;
+        case 'e':
+        case 'E':
             break;
         }
 
@@ -54,7 +59,6 @@ int main()
     bpfile.open("backup.txt");
     bpfile<<listam;
     bpfile.close();
-    */
    } catch (std::exception& e){
        std::cerr<<e.what()<<"vegre megtudjuk mi a hiba";
    }
