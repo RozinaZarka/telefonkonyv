@@ -4,6 +4,7 @@
 #include "memtrace.h"
 #include "gtest_lite.h"
 #include "fgvheader.h"
+
 //KÉSZ
 Sztring::Sztring(char const *szoveg)
 {
@@ -71,10 +72,10 @@ std::istream& operator>>(std::istream & is, Sztring & s)
     std::cout.flush();
     return is;
 }//KÉSZ
-Lista::Lista(size_t defmeret)
+Lista::Lista()
 {
-    this->meret = defmeret;
-    this->eleje = new Adat*[1];
+    this->meret = 0;
+    this->eleje = new Adat*[0];
 
 }
 //KÉSZ
@@ -145,25 +146,11 @@ std:: ostream& operator<< (std::ostream& os, Lista& listam)
 void Lista::ujrekord (Adat* hozzaad)
 
 {
-    if (this->meret)
-    {
-        Adat** uj = new Adat*[this->meret+1];
-        for (size_t s =0; s < this->meret; s++)
-        {
-
-            uj[s] = this->eleje[s];
-        }
-        delete[] this->eleje;
-        this->eleje = uj;
-        this->eleje[this->meret++] = hozzaad;
-    }
-    else
-    {
-        // delete this->eleje[0];
-        this->eleje[0] = hozzaad;
-        ++this->meret;
-    }
-
+    Adat** uj = new Adat*[this->meret+1];
+    if(this->meret >0) for (size_t s =0; s < this->meret; s++) uj[s] = this->eleje[s];
+    delete[] this->eleje;
+    this->eleje = uj;
+    this->eleje[this->meret++] = hozzaad;
 
 }
 
@@ -346,5 +333,5 @@ void ujrekord(Lista& listam)
 
     listam.ujrekord(hozzaad);
     std::cout.flush();
-    std::cout<<"Uj nevjegy letrehozva";
+    std::cout<<"Uj nevjegy letrehozva"<<std::endl;
 }

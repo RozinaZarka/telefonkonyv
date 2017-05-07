@@ -187,7 +187,7 @@ class Lista
     Adat** eleje;
     size_t meret;
 public:
-    Lista(size_t defmeret = 0);
+    Lista();
     void beolvas (std::ifstream backupfile);
     bool torol(Sztring torolni);
     size_t getMeret()
