@@ -83,6 +83,7 @@ Lista::Lista()
 Lista::~Lista()
 {
     for (size_t s = 0; s <this->meret; s++) delete this->tomb[s];
+    delete [] tomb;
 }
 
 //KÉSZ
@@ -153,7 +154,10 @@ Adat* Lista:: operator[] (size_t i)
 void Lista::ujrekord (Adat* hozzaad)
 {
     Adat** uj = new Adat*[this->meret+1];
-    if(this->meret >0) for (size_t s =0; s < this->meret; s++) uj[s] = this->tomb[s];
+    if(this->meret >0) for (size_t s =0; s < this->meret; s++){
+        uj[s] = this->tomb[s];
+        delete this->tomb[s];
+    }
     delete[] this->tomb;
     this->tomb = uj;
     this->tomb[this->meret++] = hozzaad;
@@ -174,8 +178,13 @@ void Lista::torol(Sztring& torolni)
                     Adat** uj = new Adat*[this->meret-1];
                         // egyesevel attoltom a tagokat az uj tombbe
                         for (size_t t = 0; t < this->meret; t++){
-                            if (s == t) t++; // kivéve amit torolni akarok
+
+                            if (s == t){
+                                t++;
+                                delete this->tomb[t];
+                            }  // kivéve amit torolni akarok
                             uj[t] = this->tomb[t];
+                            delete this->tomb[t];
                         }
                         // torlom a regi tombot
                         delete[] this->tomb;
@@ -185,6 +194,7 @@ void Lista::torol(Sztring& torolni)
             }  else {
 
               delete this->tomb[0];
+              delete[] this->tomb;
               this->tomb = nullptr;
             }
             this->meret--;
