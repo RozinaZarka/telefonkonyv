@@ -34,6 +34,7 @@ public:
         return adat[idx];
     }
     Sztring operator+(Sztring const & rhs) const;
+    bool operator== (Sztring & rhs) const;
 };
 
 std::ostream & operator<<(std::ostream & os, const Sztring & s);
@@ -182,19 +183,19 @@ public:
 
 class Lista
 {
-    Adat** eleje;
+    Adat** tomb;
     size_t meret;
 public:
     Lista();
     void beolvas (std::ifstream backupfile);
-    void torol(Sztring torolni);
+    void torol(Sztring& torolni);
     size_t getMeret()
     {
         return this->meret;
     }
-    Adat** getEleje ()
+    Adat** getTomb ()
     {
-        return this->eleje;
+        return this->tomb;
     }
     // viszaadja az új rekord indexét
     void ujrekord (Adat* hozzad);

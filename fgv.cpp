@@ -54,6 +54,10 @@ Sztring Sztring::operator+(Sztring const & rhs) const
     strcat(uj.adat, rhs.adat);
     return uj;
 }
+bool Sztring:: operator== (Sztring & rhs) const{
+    if (strcmp(this->adat,rhs.getAdat()))  return 1;
+    return 0;
+}
 
 //KÉSZ
 std::ostream& operator<<(std::ostream & os, const Sztring & s)
@@ -75,13 +79,13 @@ std::istream& operator>>(std::istream & is, Sztring & s)
 Lista::Lista()
 {
     this->meret = 0;
-    this->eleje = new Adat*[0];
+    this->tomb = new Adat*[0];
 
 }
 //KÉSZ
 Lista::~Lista()
 {
-    for(size_t i = 0; i < this->meret; ++i) delete this->eleje[i];
+    for (size_t s = 0; s <this->meret; s++) delete this->tomb[s];
 }
 
 //KÉSZ
@@ -146,43 +150,50 @@ std:: ostream& operator<< (std::ostream& os, Lista& listam)
 void Lista::ujrekord (Adat* hozzaad)
 {
     Adat** uj = new Adat*[this->meret+1];
-    if(this->meret >0) for (size_t s =0; s < this->meret; s++) uj[s] = this->eleje[s];
-    delete[] this->eleje;
-    this->eleje = uj;
-    this->eleje[this->meret++] = hozzaad;
+    if(this->meret >0) for (size_t s =0; s < this->meret; s++) uj[s] = this->tomb[s];
+    delete[] this->tomb;
+    this->tomb = uj;
+    this->tomb[this->meret++] = hozzaad;
 
 }
 
-void Lista::torol(Sztring torolni)
+void Lista::torol(Sztring& torolni)
 {
-    for (size_t s =0; s<=this->meret; s++)
-    {
-        if (strcmp(torolni.getAdat(),this->eleje[s]->getNev().getAdat()))
-        {
+    try{
 
-            if (this->meret>1)
-            {
-                Adat** uj = new Adat*[this->meret-1];
-                for (size_t t = 0; t<this->meret; t++)
-                {
-                    if (s == t) t++;
-                    uj[t] = this->eleje[t];
+
+        /* for (size_t s =0; s < this->meret; s++){
+
+         if ( this->tomb[s]->getNev()== torolni){
+            if (this->meret>1){
+                    Adat** uj = new Adat*[this->meret-1];
+                        for (size_t t = 0; t < this->meret; t++){
+                            if (s == t) t++;
+                            uj[t] = this->tomb[t];
+                        }
+                        delete[] this->tomb;
+                        this->tomb = uj;
+
+                    }
+                    else
+                    {
+                        delete this->tomb[0];
+                        this->tomb[0] = new Szemely;
+                    }
+                    this->meret--;
+
+
                 }
-                delete[] this->eleje;
-                this->eleje = uj;
 
             }
-            else
-            {
-                delete this->eleje[0];
-                this->eleje[0] = new Szemely;
-            }
-            this->meret--;
-
-        } else {
-          //  throw std::exception;
-        }
+    */
     }
+    catch (std::exception &e)
+    {
+        std::cerr<<e.what()<<std::endl<<"torles sikertelen"<<std::endl;
+
+    }
+
 
 }
 
@@ -192,14 +203,11 @@ KÉSZ
 */
 Adat* Lista:: operator[] (size_t i)
 {
-    return this->eleje[i];
+    return this->tomb[i];
 }
 // megadott nev alajan keres a listán, visszaadja az elso talalatot vagy hibat dob
-Adat* Lista::keres (Sztring& keresettneve){
-
-}
-void kereses(Lista& listam){
-}
+//Adat* Lista::keres (Sztring& keresettneve){}
+void kereses(Lista& listam){}
 
 /*
 * egy bizonyos nevû adatot torol a listáról
@@ -207,10 +215,20 @@ void kereses(Lista& listam){
 */
 void torles(Lista& listam)
 {
+    try {
+    if (listam.getMeret() == 0) throw std::exception();
     Sztring s1;
-    std::cout<<"Milyen rekordot szeretne torolni? Adja meg a nevet!"<<std::cout;
+    std::cout<<"Milyen rekordot szeretne torolni? Adja meg a nevet!"<<std::endl;
     std::cin>>s1;
-    std::cout<<"rekord torolve"<<std::endl;
+    listam.torol(s1);
+    std::cout<<"Rekord torolve"<<std::endl;
+    }  catch (std::exception &e)
+    {
+        std::cerr<<e.what()<<std::endl<<"torles sikertelen"<<std::endl;
+
+    }
+
+
 
 
 }
@@ -288,54 +306,4 @@ void ujrekord(Lista& listam)
     std::cout.flush();
     std::cout<<"Uj nevjegy letrehozva"<<std::endl;
 }
-/*
-* beolvassa az adatokat a backupfile.txt fájlból és eltárolja õket egy Lista-ban
-*/
 
-/*void Lista::beolvas(std::ifstream backupfile )
-{
-    backupfile.open ("backup.txt");
-     if (!backupfile)
-     {
-         std::cerr << "Nincs mentett telefonkönyved!";
-     }
-     else
-     {
-         Adat* hozzaad;
-         char ch = '0';
-         char tipus;
-         Sztring sz;
-         while (backupfile>> noskipws >> tipus)
-         {
-            if (tipus == '0') // Céget találtunk
-            {
-                hozzaad = new Ceg;
-             } else {
-                 hozzaad = new Szemely;
-             }
-             // név beolvasása karakterenként endline-ig
-                while(ch != '\n'){
-                     backupfile>> noskipws >> ch;
-                     sz+= Sztring(ch);
-                }
-                hozzaad.setNev(sz);
-                // irányítószám beolvasása
-                backupfile>> noskipws >> ch;
-                while(ch != '\n'){
-                     while(ch != '\n'){
-
-                     backupfile>> noskipws >> ch;
-
-                }
-                     backupfile>> noskipws >> ch;
-
-                }
-         }
-
-     }
-     backupfile.close();
-     char ch;
-
-
-}
-*/
