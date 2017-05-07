@@ -131,7 +131,7 @@ std::ostream& operator<< (std::ostream& os, Adat* kiirando)
 std:: ostream& operator<< (std::ostream& os, Lista& listam)
 {
 
-    for (size_t s = 0; s<= listam.getMeret(); s++)
+    for (size_t s = 0; s< listam.getMeret(); s++)
     {
         os<<listam[s]<<std::endl;
 
