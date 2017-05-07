@@ -114,13 +114,13 @@ public:
     }
     virtual void kiir(std::ostream& os) =0;
     virtual void setDszam(int i) {} ;
-    virtual int getDszam() {};
+    virtual int getDszam() {return 0 ;}
     virtual void setAlapitas(int i) {};
-    virtual int getAlapitas() {} ;
+    virtual int getAlapitas() {return 0 ;}
     virtual void setPszam(int i) {};
-    virtual int getPszam() {};
+    virtual int getPszam() {return 0 ;}
     virtual void setBnev(Sztring s) {} ;
-    virtual Sztring getBnev() {};
+    virtual Sztring getBnev() {return 0 ;}
     virtual ~Adat() {};
 
 

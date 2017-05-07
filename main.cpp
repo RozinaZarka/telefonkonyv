@@ -7,7 +7,7 @@
 
 
 
-int main()
+int main(int argc, char* argv[])
 {
    try {// setbuf(stdout, 0);
     Lista listam;

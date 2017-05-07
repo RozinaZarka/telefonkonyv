@@ -34,7 +34,10 @@
 		</Compiler>
 		<Unit filename="fgv.cpp" />
 		<Unit filename="fgvheader.h" />
+		<Unit filename="gtest_lite.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="memtrace.cpp" />
+		<Unit filename="memtrace.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -140,6 +140,7 @@ std:: ostream& operator<< (std::ostream& os, Lista& listam)
 
     }
     std::cout.flush();
+    return os;
 };
 
 Adat* Lista:: operator[] (size_t i)
@@ -185,8 +186,8 @@ void Lista::torol(Sztring& torolni)
 
             }  else {
 
-              // delete this->tomb[0];
-              // this->tomb[0] = nullptr;
+              delete this->tomb[0];
+              this->tomb = nullptr;
             }
             this->meret--;
             }
