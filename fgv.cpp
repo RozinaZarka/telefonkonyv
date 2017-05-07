@@ -55,8 +55,7 @@ Sztring Sztring::operator+(Sztring const & rhs) const
     return uj;
 }
 bool Sztring:: operator== (Sztring & rhs) const{
-    if (strcmp(this->adat,rhs.getAdat()))  return 1;
-    return 0;
+     return strcmp(this->adat,rhs.getAdat()) == 0;
 }
 
 //KÉSZ
@@ -134,7 +133,7 @@ std::ostream& operator<< (std::ostream& os, Adat* kiirando)
 }
 std:: ostream& operator<< (std::ostream& os, Lista& listam)
 {
-
+    if (!listam.getMeret()) os<<"Nincs egy nevjegye sem"<<std::endl;
     for (size_t s = 0; s< listam.getMeret(); s++)
     {
         os<<listam[s]<<std::endl;
@@ -186,8 +185,8 @@ void Lista::torol(Sztring& torolni)
 
             }  else {
 
-                        delete this->tomb[0];
-                        this->tomb[0] = new Szemely;
+              // delete this->tomb[0];
+              // this->tomb[0] = nullptr;
             }
             this->meret--;
             }
@@ -215,9 +214,9 @@ void Lista::keres (Sztring& keresettneve){
 	// vegiggyaloglok a tombon
          for (size_t s =0; s < this->meret; s++){
 // megnézem, hogy egyezik-e a nev
-          //if ( this->tomb[s]->getNev()== keresettneve ) 
+          //if ( this->tomb[s]->getNev()== keresettneve )
           std::cout<<tomb[s]<<std::endl;
-           
+
 
 		}
 }
