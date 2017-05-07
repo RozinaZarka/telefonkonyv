@@ -111,7 +111,7 @@ public:
     {
         this->munkahelyiszam = i;
     }
-    virtual void kiir(std::ostream& os)=0;
+    virtual void kiir(std::ostream& os) =0;
     virtual void setDszam(int i) {} ;
     virtual int getDszam() {};
     virtual void setAlapitas(int i) {};
@@ -120,9 +120,7 @@ public:
     virtual int getPszam() {};
     virtual void setBnev(Sztring s) {} ;
     virtual Sztring getBnev() {};
-
     virtual ~Adat() {};
-    //Adat& operator= (const Adat&);
 
 
 

@@ -272,14 +272,11 @@ void ujrekord(Lista& listam)
     std::cout<<"Ceget (0) vagy szemelyt (1) szeretne felvenni?"<<std::endl;
     std::cin>>i1;
     Sztring s1;
-    Adat* hozzaad;
+    Adat* hozzaad = new Ceg;
     if (i1)
     {
+        delete hozzaad;
         hozzaad = new Szemely;
-    }
-    else
-    {
-        hozzaad = new Ceg;
     }
     hozzaad->setTipus(i1);
 
@@ -332,6 +329,7 @@ void ujrekord(Lista& listam)
     }
 
     listam.ujrekord(hozzaad);
+    delete hozzaad;
     std::cout.flush();
     std::cout<<"Uj nevjegy letrehozva"<<std::endl;
 }
