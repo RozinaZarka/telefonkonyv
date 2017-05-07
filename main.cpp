@@ -14,13 +14,13 @@ int main()
     backupfile.open("backupfile.txt);
     listam.beolvas(backupfile);
     */
-    int x =1;
-    while (x != -1 )
+    char x = 'l';
+    while (!(x = 'k' || x= 'K' || x = EOF) )
     {
 
         std::cout<< "Mit szeretnel tenni?"<<std::endl
-                 << "1.Uj nevjegy felvetele"<<std::endl
-                 << "2.Nevjegyek listazasa"<<std::endl
+                 << "Uj nevjegy felvetele (U)"<<std::endl
+                 << "2.Nevjegyek listazasa (L)"<<std::endl
                  << "3.Nevjegy torlese"<<std::endl
                  << "4.Kilepes"<<std::endl;
                  std::cout.flush();
@@ -28,18 +28,21 @@ int main()
 
         switch(x)
         {
-        case 1:
+        case 'U':
+        case 'u':
             ujrekord(listam);
             break;
-        case 2:
+        case 'l':
+        case 'L':
             std::cout.flush();
             std::cout<<listam;
             break;
-        case 3:
+        case 't':
+        case 'T':
             torles(listam);
             break;
-        case 4:
-            x= -1;
+        case 'k':
+        case 'K':
             break;
         }
 
