@@ -15,7 +15,7 @@ int main()
     listam.beolvas(backupfile);
     */
     char x = 'l';
-    while (!(x = 'k' || x= 'K' || x = EOF) )
+    while (!(x == 'k' || x== 'K' || x == EOF) )
     {
 
         std::cout<< "Mit szeretnel tenni?"<<std::endl
