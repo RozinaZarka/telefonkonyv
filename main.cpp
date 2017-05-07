@@ -59,6 +59,7 @@ int main()
     bpfile.open("backup.txt");
     bpfile<<listam;
     bpfile.close();
+*/
    } catch (std::exception& e){
        std::cerr<<e.what()<<"vegre megtudjuk mi a hiba";
    }

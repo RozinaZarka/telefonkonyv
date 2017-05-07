@@ -193,58 +193,12 @@ Adat* Lista:: operator[] (size_t i)
 {
     return this->eleje[i];
 }
-
-/*
-* beolvassa az adatokat a backupfile.txt fájlból és eltárolja õket egy Lista-ban
-*/
-
-void Lista::beolvas(std::ifstream backupfile )
-{
-    /* backupfile.open ("backup.txt");
-     if (!backupfile)
-     {
-         std::cerr << "Nincs mentett telefonkönyved!";
-     }
-     else
-     {
-         Adat* hozzaad;
-         char ch = '0';
-         char tipus;
-         Sztring sz;
-         while (backupfile>> noskipws >> tipus)
-         {
-            if (tipus == '0') // Céget találtunk
-            {
-                hozzaad = new Ceg;
-             } else {
-                 hozzaad = new Szemely;
-             }
-             // név beolvasása karakterenként endline-ig
-                while(ch != '\n'){
-                     backupfile>> noskipws >> ch;
-                     sz+= Sztring(ch);
-                }
-                hozzaad.setNev(sz);
-                // irányítószám beolvasása
-                backupfile>> noskipws >> ch;
-                while(ch != '\n'){
-                     while(ch != '\n'){
-
-                     backupfile>> noskipws >> ch;
-
-                }
-                     backupfile>> noskipws >> ch;
-
-                }
-         }
-
-     }
-     backupfile.close();
-     char ch;
-     */
+// megadott nev alajan keres a listán, visszaadja az elso talalatot vagy hibat dob
+Adat* Lista::keres (Sztring& keresettneve){
 
 }
-
+void kereses(Lista& listam){
+}
 
 /*
 * egy bizonyos nevû adatot torol a listáról
@@ -333,3 +287,54 @@ void ujrekord(Lista& listam)
     std::cout.flush();
     std::cout<<"Uj nevjegy letrehozva"<<std::endl;
 }
+/*
+* beolvassa az adatokat a backupfile.txt fájlból és eltárolja õket egy Lista-ban
+*/
+
+/*void Lista::beolvas(std::ifstream backupfile )
+{
+    backupfile.open ("backup.txt");
+     if (!backupfile)
+     {
+         std::cerr << "Nincs mentett telefonkönyved!";
+     }
+     else
+     {
+         Adat* hozzaad;
+         char ch = '0';
+         char tipus;
+         Sztring sz;
+         while (backupfile>> noskipws >> tipus)
+         {
+            if (tipus == '0') // Céget találtunk
+            {
+                hozzaad = new Ceg;
+             } else {
+                 hozzaad = new Szemely;
+             }
+             // név beolvasása karakterenként endline-ig
+                while(ch != '\n'){
+                     backupfile>> noskipws >> ch;
+                     sz+= Sztring(ch);
+                }
+                hozzaad.setNev(sz);
+                // irányítószám beolvasása
+                backupfile>> noskipws >> ch;
+                while(ch != '\n'){
+                     while(ch != '\n'){
+
+                     backupfile>> noskipws >> ch;
+
+                }
+                     backupfile>> noskipws >> ch;
+
+                }
+         }
+
+     }
+     backupfile.close();
+     char ch;
+
+
+}
+*/
