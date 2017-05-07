@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
+#include "memtrace.h"
+#include "gtest_lite.h"
 #include "fgvheader.h"
-//#include "fgv.cpp"
 
 
 
@@ -9,8 +10,8 @@ int main()
 {
     // setbuf(stdout, 0);
     Lista listam;
-    std::ifstream backupfile;
-    /* backupfile.open("backupfile.txt);
+   /* std::ifstream backupfile;
+    backupfile.open("backupfile.txt);
     listam.beolvas(backupfile);
     */
     int x =1;
@@ -44,6 +45,7 @@ int main()
 
     }
     std::cout<<"Viszontlatasra"<<std::endl;
+    std::cout.flush();
     std::ofstream bpfile;
     bpfile.open("backup.txt");
     bpfile<<listam;

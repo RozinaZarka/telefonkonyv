@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include "memtrace.h"
+#include "gtest_lite.h"
 #include "fgvheader.h"
 //KÉSZ
 Sztring::Sztring(char const *szoveg)
@@ -57,6 +59,7 @@ std::ostream& operator<<(std::ostream & os, const Sztring & s)
 {
     for (size_t i = 0; i != s.size(); ++i)
         os << s[i];
+    std::cout.flush();
     return os;
 }
 //KÉSZ
@@ -65,10 +68,12 @@ std::istream& operator>>(std::istream & is, Sztring & s)
 
     is>>s.getAdat();
     s.setHossz(strlen(s.getAdat()));
+    std::cout.flush();
     return is;
 }//KÉSZ
 Lista::Lista(size_t defmeret)
-{   this->meret = defmeret;
+{
+    this->meret = defmeret;
     this->eleje = new Adat*[1];
 
 }
@@ -91,6 +96,7 @@ void Szemely::kiir(std::ostream& os)
     os<<this->getBnev()<<std::endl;
     os<<this->getPszam()<<std::endl;
     os<<std::endl;
+    std::cout.flush();
 
 };
 //KÉSZ
@@ -106,24 +112,30 @@ void Ceg::kiir(std::ostream& os)
     os<<this->getAlapitas()<<std::endl;
     os<<this->getDszam()<<std::endl;
     os<<std::endl;
+    std::cout.flush();
 
 };
 /*
 * kiir egy adatot egy os re
 * a kiir fgv-t használja mi az adat virtuális tagja, és így az adat* típusú heterogén kollekció adatait különbözõ módon írja ki
 */
-std::ostream& operator<< (std::ostream& os, Adat* kiirando){
+std::ostream& operator<< (std::ostream& os, Adat* kiirando)
+{
 
     kiirando->kiir(os);
+    std::cout.flush();
     return os;
 
 }
-std:: ostream& operator<< (std::ostream& os, Lista& listam){
+std:: ostream& operator<< (std::ostream& os, Lista& listam)
+{
 
-    for (size_t s = 0; s<= listam.getMeret(); s++){
-         os<<listam[s]<<std::endl;
+    for (size_t s = 0; s<= listam.getMeret(); s++)
+    {
+        os<<listam[s]<<std::endl;
 
     }
+    std::cout.flush();
 };
 
 /*
@@ -144,8 +156,10 @@ void Lista::ujrekord (Adat* hozzaad)
         delete[] this->eleje;
         this->eleje = uj;
         this->eleje[this->meret++] = hozzaad;
-    } else {
-        delete this->eleje[0];
+    }
+    else
+    {
+        // delete this->eleje[0];
         this->eleje[0] = hozzaad;
         ++this->meret;
     }
@@ -199,48 +213,48 @@ Adat* Lista:: operator[] (size_t i)
 
 void Lista::beolvas(std::ifstream backupfile )
 {
-   /* backupfile.open ("backup.txt");
-    if (!backupfile)
-    {
-        std::cerr << "Nincs mentett telefonkönyved!";
-    }
-    else
-    {
-        Adat* hozzaad;
-        char ch = '0';
-        char tipus;
-        Sztring sz;
-        while (backupfile>> noskipws >> tipus)
-        {
-           if (tipus == '0') // Céget találtunk
-           {
-               hozzaad = new Ceg;
-            } else {
-                hozzaad = new Szemely;
-            }
-            // név beolvasása karakterenként endline-ig
-               while(ch != '\n'){
-                    backupfile>> noskipws >> ch;
-                    sz+= Sztring(ch);
-               }
-               hozzaad.setNev(sz);
-               // irányítószám beolvasása
-               backupfile>> noskipws >> ch;
-               while(ch != '\n'){
-                    while(ch != '\n'){
+    /* backupfile.open ("backup.txt");
+     if (!backupfile)
+     {
+         std::cerr << "Nincs mentett telefonkönyved!";
+     }
+     else
+     {
+         Adat* hozzaad;
+         char ch = '0';
+         char tipus;
+         Sztring sz;
+         while (backupfile>> noskipws >> tipus)
+         {
+            if (tipus == '0') // Céget találtunk
+            {
+                hozzaad = new Ceg;
+             } else {
+                 hozzaad = new Szemely;
+             }
+             // név beolvasása karakterenként endline-ig
+                while(ch != '\n'){
+                     backupfile>> noskipws >> ch;
+                     sz+= Sztring(ch);
+                }
+                hozzaad.setNev(sz);
+                // irányítószám beolvasása
+                backupfile>> noskipws >> ch;
+                while(ch != '\n'){
+                     while(ch != '\n'){
 
-                    backupfile>> noskipws >> ch;
+                     backupfile>> noskipws >> ch;
 
-               }
-                    backupfile>> noskipws >> ch;
+                }
+                     backupfile>> noskipws >> ch;
 
-               }
-        }
+                }
+         }
 
-    }
-    backupfile.close();
-    char ch;
-    */
+     }
+     backupfile.close();
+     char ch;
+     */
 
 }
 
@@ -259,18 +273,6 @@ void torles(Lista& listam)
 
 }
 
-/*
-* egy std::ostream típusú objektumra írja a lista tartalmát
-*
-*/
-/* void Lista::kiir(std::ostream& os)
-{
-    for (size_t s = 0; s <= this->meret ; s++)
-    {
-        os<<this->eleje[s];
-    }
-}
-*/
 
 /*
 *a fõmenü egy almenüje, kezeli a felhasználói bemenetet, és a megfelelõ függvények meghívásával létrehoz egy új bejegyzést a listában
@@ -297,50 +299,52 @@ void ujrekord(Lista& listam)
     std::cout<<"Nev?"<<std::endl;
     std::cin>>s1;
     hozzaad->setNev(s1);
-
+    std::cout.flush();
     std::cout<<"Iranyitoszam?"<<std::endl;
     std::cin>>i1;
     hozzaad->setIszam(i1);
-
+    std::cout.flush();
     std::cout<<"Varos?"<<std::endl;
     std::cin>>s1;
     hozzaad->setVaros(s1);
-
+    std::cout.flush();
     std::cout<<"Utca?"<<std::endl;
     std::cin>>s1;
     hozzaad->setUtca(s1);
-
+    std::cout.flush();
     std::cout<<"Hazszam?"<<std::endl;
     std::cin>>i1;
     hozzaad->setHszam(i1);
-
+    std::cout.flush();
     std::cout<<"Telefonszam?"<<std::endl;
     std::cin>>i1;
     hozzaad->setMszam(i1);
-
+    std::cout.flush();
 // ha a tipus 0, a cégekhez tartozó infókat kérjük be, ha 1 a személyekhez
     if (hozzaad->getTipus())
     {
         std::cout<<"Becenev?"<<std::endl;
         std::cin>>s1;
         hozzaad->setBnev(s1);
-
+        std::cout.flush();
         std::cout<<"Privat telefonszam?"<<std::endl;
         std::cin>>i1;
         hozzaad->setPszam(i1);
+        std::cout.flush();
     }
     else
     {
         std::cout<<"Alapitas eve?"<<std::endl;
         std::cin>>i1;
         hozzaad->setAlapitas(i1);
-
+        std::cout.flush();
         std::cout<<"Dolgozok szama?"<<std::endl;
         std::cin>>i1;
         hozzaad->setDszam(i1);
+        std::cout.flush();
     }
 
     listam.ujrekord(hozzaad);
-
+    std::cout.flush();
     std::cout<<"Uj nevjegy letrehozva";
 }
