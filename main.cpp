@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
                  << "(K) Nevjegy keresese"<<std::endl
                  << "(T) Nevjegy torlese"<<std::endl
                  << "(E) Kilepes"<<std::endl;
-                 std::cout.flush();
+
         std::cin>>x;
 
         switch(x)
@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
             break;
         case 'l':
         case 'L':
-            std::cout.flush();
+
             std::cout<<listam;
             break;
         case 't':
@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
     }
     std::cout<<"itt nem szaródik el 26"<<std::endl;
     std::cout<<"Viszontlatasra"<<std::endl;
-    std::cout.flush();
+
     std::ofstream bpfile;
     bpfile.open("backup.txt");
     bpfile<<listam;

@@ -61,7 +61,7 @@ std::ostream& operator<<(std::ostream & os, const Sztring & s)
 {
     for (size_t i = 0; i != s.size(); ++i)
         os << s[i];
-    std::cout.flush();
+
     return os;
 }
 //KÉSZ
@@ -70,7 +70,7 @@ std::istream& operator>>(std::istream & is, Sztring & s)
 
     is>>s.getAdat();
     s.setHossz(strlen(s.getAdat()));
-    std::cout.flush();
+
     return is;
 }//KÉSZ
 Lista::Lista()
@@ -99,7 +99,7 @@ void Szemely::kiir(std::ostream& os)
     os<<this->getBnev()<<std::endl;
     os<<this->getPszam()<<std::endl;
     os<<std::endl;
-    std::cout.flush();
+
 
 };
 //KÉSZ
@@ -115,7 +115,7 @@ void Ceg::kiir(std::ostream& os)
     os<<this->getAlapitas()<<std::endl;
     os<<this->getDszam()<<std::endl;
     os<<std::endl;
-    std::cout.flush();
+
 
 };
 /*
@@ -126,7 +126,7 @@ std::ostream& operator<< (std::ostream& os, Adat* kiirando)
 {
 
     kiirando->kiir(os);
-    std::cout.flush();
+
     return os;
 
 }
@@ -138,7 +138,7 @@ std:: ostream& operator<< (std::ostream& os, Lista& listam)
         os<<listam[s]<<std::endl;
 
     }
-    std::cout.flush();
+
     return os;
 };
 
@@ -317,27 +317,27 @@ void ujrekord(Lista& listam)
     std::cout<<"Nev?"<<std::endl;
     std::cin>>s1;
     hozzaad->setNev(s1);
-    std::cout.flush();
+
     std::cout<<"Iranyitoszam?"<<std::endl;
     std::cin>>i1;
     hozzaad->setIszam(i1);
-    std::cout.flush();
+
     std::cout<<"Varos?"<<std::endl;
     std::cin>>s1;
     hozzaad->setVaros(s1);
-    std::cout.flush();
+
     std::cout<<"Utca?"<<std::endl;
     std::cin>>s1;
     hozzaad->setUtca(s1);
-    std::cout.flush();
+
     std::cout<<"Hazszam?"<<std::endl;
     std::cin>>i1;
     hozzaad->setHszam(i1);
-    std::cout.flush();
+
     std::cout<<"Telefonszam?"<<std::endl;
     std::cin>>i1;
     hozzaad->setMszam(i1);
-    std::cout.flush();
+
      std::cout<<"itt nem szaródik el 4"<<std::endl;
 // ha a tipus 0, a cégekhez tartozó infókat kérjük be, ha 1 a személyekhez
     if (hozzaad->getTipus())
@@ -345,28 +345,27 @@ void ujrekord(Lista& listam)
         std::cout<<"Becenev?"<<std::endl;
         std::cin>>s1;
         hozzaad->setBnev(s1);
-        std::cout.flush();
+
         std::cout<<"Privat telefonszam?"<<std::endl;
         std::cin>>i1;
         hozzaad->setPszam(i1);
-        std::cout.flush();
+
     }
     else
     {
         std::cout<<"Alapitas eve?"<<std::endl;
         std::cin>>i1;
         hozzaad->setAlapitas(i1);
-        std::cout.flush();
+
         std::cout<<"Dolgozok szama?"<<std::endl;
         std::cin>>i1;
         hozzaad->setDszam(i1);
-        std::cout.flush();
+
     }
 
     listam.ujrekord(hozzaad);
 
-    std::cout.flush();
     std::cout<<"Uj nevjegy letrehozva"<<std::endl;
-    delete s1.getAdat();
+
 }
 
