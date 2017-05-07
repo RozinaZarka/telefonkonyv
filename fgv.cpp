@@ -143,6 +143,11 @@ std:: ostream& operator<< (std::ostream& os, Lista& listam)
     std::cout.flush();
 };
 
+Adat* Lista:: operator[] (size_t i)
+{
+    return this->tomb[i];
+}
+
 /*
 * a listához új rekordot ad, ezt használja a fõmenu ujrekord függvénye
 *KESZ
@@ -161,38 +166,42 @@ void Lista::torol(Sztring& torolni)
 {
     try{
 
-
-        /* for (size_t s =0; s < this->meret; s++){
-
-         if ( this->tomb[s]->getNev()== torolni){
+ // vegiggyaloglok a tombon
+         for (size_t s =0; s < this->meret; s++){
+// megnézem, hogy egyezik-e a nev
+          if ( this->tomb[s]->getNev()== torolni){
+            // ha nem egy elemu, akkor uj tombot kell neki foglalnom
             if (this->meret>1){
+                    // lefoglalom az uj tombot eggyel kisebbre
                     Adat** uj = new Adat*[this->meret-1];
+                        // egyesevel attoltom a tagokat az uj tombbe
                         for (size_t t = 0; t < this->meret; t++){
-                            if (s == t) t++;
+                            if (s == t) t++; // kivéve amit torolni akarok
                             uj[t] = this->tomb[t];
                         }
+                        // torlom a regi tombot
                         delete[] this->tomb;
+                        // az uj tombot berakom a listaba
                         this->tomb = uj;
 
-                    }
-                    else
-                    {
+            }  else {
+
                         delete this->tomb[0];
                         this->tomb[0] = new Szemely;
-                    }
-                    this->meret--;
-
-
-                }
-
             }
-    */
+            this->meret--;
+            }
+
+
+
+    }
     }
     catch (std::exception &e)
     {
-        std::cerr<<e.what()<<std::endl<<"torles sikertelen"<<std::endl;
+        std::cerr<<e.what()<<std::endl<<""<<std::endl;
 
     }
+
 
 
 }
@@ -201,13 +210,32 @@ void Lista::torol(Sztring& torolni)
 * Indexelõ operátor a Lista használatához
 KÉSZ
 */
-Adat* Lista:: operator[] (size_t i)
-{
-    return this->tomb[i];
-}
 // megadott nev alajan keres a listán, visszaadja az elso talalatot vagy hibat dob
-//Adat* Lista::keres (Sztring& keresettneve){}
-void kereses(Lista& listam){}
+void Lista::keres (Sztring& keresettneve){
+	// vegiggyaloglok a tombon
+         for (size_t s =0; s < this->meret; s++){
+// megnézem, hogy egyezik-e a nev
+          //if ( this->tomb[s]->getNev()== keresettneve ) 
+          std::cout<<tomb[s]<<std::endl;
+           
+
+		}
+}
+void kereses(Lista& listam){
+    try {
+    if (listam.getMeret() == 0) throw std::exception();
+    Sztring s1;
+    std::cout<<"Milyen rekordot keres? Adja meg a nevet!"<<std::endl;
+    std::cin>>s1;
+    listam.keres(s1);
+
+    }  catch (std::exception &e)
+    {
+        std::cerr<<e.what()<<std::endl<<"nulla elemu lista"<<std::endl;
+
+    }
+
+}
 
 /*
 * egy bizonyos nevû adatot torol a listáról

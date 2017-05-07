@@ -200,7 +200,7 @@ public:
     // viszaadja az új rekord indexét
     void ujrekord (Adat* hozzad);
     Adat* operator[] (size_t i);
-    Adat* keres (Sztring& keresettneve);
+    void keres (Sztring& keresettneve);
     //void beolvas(std::ifstream backupfile )
     ~Lista();
 
