@@ -367,6 +367,6 @@ void ujrekord(Lista& listam)
 
     std::cout.flush();
     std::cout<<"Uj nevjegy letrehozva"<<std::endl;
-
+    delete s1.getAdat();
 }
 
