@@ -55,11 +55,11 @@ int main()
     }
     std::cout<<"Viszontlatasra"<<std::endl;
     std::cout.flush();
-   /* std::ofstream bpfile;
+    std::ofstream bpfile;
     bpfile.open("backup.txt");
     bpfile<<listam;
     bpfile.close();
-*/
+
    } catch (std::exception& e){
        std::cerr<<e.what()<<"vegre megtudjuk mi a hiba";
    }
