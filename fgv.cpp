@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include "memtrace.h"
-#include "gtest_lite.h"
 #include "fgvheader.h"
 
 //KÉSZ
