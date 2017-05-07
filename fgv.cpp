@@ -76,7 +76,7 @@ std::istream& operator>>(std::istream & is, Sztring & s)
 Lista::Lista()
 {
     this->meret = 0;
-    this->tomb = new Adat*[0];
+    this->tomb = nullptr;
 
 }
 //KÉSZ
@@ -154,18 +154,38 @@ Adat* Lista:: operator[] (size_t i)
 void Lista::ujrekord (Adat* hozzaad)
 {
     Adat** uj = new Adat*[this->meret+1];
-    if(this->meret > 0){
+   if (this->meret == 0){
+    uj[0]= hozzaad;
+    std::cout<<"itt nem szaródik el 0"<<std::endl;
+    delete[] this->tomb;
+    this->tomb = uj;
+   } else {
+       for (size_t s = 0; s < this->meret; s++){
+        uj[s]= this->tomb[s];
+        delete this->tomb[s];
+        std::cout<<"itt nem szaródik el 1  "<<s<<std::endl;
+       }
+        std::cout<<"itt nem szaródik el 2"<<std::endl;
+        uj[this->meret] = hozzaad;
+        delete[] this->tomb;
+        this->tomb = uj;
+   }
+   this->meret = this->meret +1;
+std::cout<<"itt nem szaródik el 10"<<std::endl;
+
+   /* if(this->meret > 0){
         for (size_t s = 0; s <= this->meret; s++){
         uj[s] = this->tomb[s];
         delete this->tomb[s];
     }
 
-    }
+
+    //}
     delete[] this->tomb;
     this->tomb = uj;
     this->meret = this->meret +1;
     this->tomb[this->meret] = hozzaad;
-
+*/
 }
 
 void Lista::torol(Sztring& torolni)
@@ -318,6 +338,7 @@ void ujrekord(Lista& listam)
     std::cin>>i1;
     hozzaad->setMszam(i1);
     std::cout.flush();
+     std::cout<<"itt nem szaródik el 4"<<std::endl;
 // ha a tipus 0, a cégekhez tartozó infókat kérjük be, ha 1 a személyekhez
     if (hozzaad->getTipus())
     {
@@ -346,5 +367,6 @@ void ujrekord(Lista& listam)
 
     std::cout.flush();
     std::cout<<"Uj nevjegy letrehozva"<<std::endl;
+
 }
 

@@ -33,6 +33,7 @@ int main(int argc, char* argv[])
         case 'U':
         case 'u':
             ujrekord(listam);
+            std::cout<<"itt nem szaródik el 6"<<std::endl;
             break;
         case 'l':
         case 'L':
@@ -53,6 +54,7 @@ int main(int argc, char* argv[])
         }
 
     }
+    std::cout<<"itt nem szaródik el 26"<<std::endl;
     std::cout<<"Viszontlatasra"<<std::endl;
     std::cout.flush();
     std::ofstream bpfile;
