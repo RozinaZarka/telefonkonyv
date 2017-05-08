@@ -55,7 +55,11 @@ Sztring Sztring::operator+(Sztring const & rhs) const
 bool Sztring:: operator== (Sztring & rhs) const{
      return strcmp(this->adat,rhs.getAdat()) == 0;
 }
-
+void Sztring::setAdat(char * uj)
+{
+    delete[] this->adat;
+    this->adat =uj;
+}
 //KÉSZ
 std::ostream& operator<<(std::ostream & os, const Sztring & s)
 {
@@ -67,23 +71,12 @@ std::ostream& operator<<(std::ostream & os, const Sztring & s)
 //KÉSZ
 std::istream& operator>>(std::istream & is, Sztring & s)
 {
+    char * beolvas = new char[20];
+    is>>beolvas;
+    s.setHossz(strlen(beolvas));
+    s.setAdat(beolvas);
 
-    char* uj;
-    int i =1;
-    char betu = getchar();
-
-    while (betu!= '\n'){
-      uj = new char[i];
-      for (int j = 0;j <i; j++){
-        uj[j] = s.getAdat()[j];
-        }
-        uj[i] = betu;
-        betu = getchar();
-        s.setAdat(uj);
-        delete[] uj;
-        i++;
-    }
-    s.setHossz(i);
+   // s.setHossz(i);
 
     return is;
 }//KÉSZ
@@ -104,7 +97,8 @@ Lista::~Lista()
 void Szemely::kiir(std::ostream& os)
 {
     os<<this->getTipus()<<std::endl;
-    os<<this->getNev()<<std::endl;
+    os<<this->getVnev()<<std::endl;
+    os<<this->getKev()<<std::endl;
     os<<this->getIszam()<<std::endl;
     os<<this->getVaros()<<std::endl;
     os<<this->getUtca()<<std::endl;
@@ -187,19 +181,7 @@ void Lista::ujrekord (Adat* hozzaad)
    this->meret = this->meret +1;
 std::cout<<"itt nem szaródik el 10"<<std::endl;
 
-   /* if(this->meret > 0){
-        for (size_t s = 0; s <= this->meret; s++){
-        uj[s] = this->tomb[s];
-        delete this->tomb[s];
-    }
 
-
-    //}
-    delete[] this->tomb;
-    this->tomb = uj;
-    this->meret = this->meret +1;
-    this->tomb[this->meret] = hozzaad;
-*/
 }
 
 void Lista::torol(Sztring& torolni)
@@ -327,40 +309,16 @@ void ujrekord(Lista& listam)
         hozzaad = new Ceg;
     }
     hozzaad->setTipus(i1);
-
-    std::cout<<"Nev?"<<std::endl;
-    std::cin>>s1;
-    hozzaad->setNev(s1);
-
-
-    std::cout<<"Iranyitoszam?"<<std::endl;
-    std::cin>>i1;
-    hozzaad->setIszam(i1);
-/*
-    std::cout<<"Varos?"<<std::endl;
-    std::cin>>s1;
-    hozzaad->setVaros(s1);
-
-    std::cout<<"Utca?"<<std::endl;
-    std::cin>>s1;
-    hozzaad->setUtca(s1);
- */
-    std::cout<<"Hazszam?"<<std::endl;
-    std::cin>>i1;
-    hozzaad->setHszam(i1);
-
-    std::cout<<"Telefonszam?"<<std::endl;
-    std::cin>>i1;
-    hozzaad->setMszam(i1);
-
-     std::cout<<"itt nem szaródik el 4"<<std::endl;
-// ha a tipus 0, a cégekhez tartozó infókat kérjük be, ha 1 a személyekhez
-    if (hozzaad->getTipus())
+ if (hozzaad->getTipus())
     {
-  /*     std::cout<<"Becenev?"<<std::endl;
+        std::cout<<"Vezeteknev?"<<std::endl;
         std::cin>>s1;
-        hozzaad->setBnev(s1);
-*/
+        hozzaad->setVnev(s1);
+
+        std::cout<<"Keresztnev?"<<std::endl;
+        std::cin>>s1;
+        hozzaad->setKnev(s1);
+
         std::cout<<"Privat telefonszam?"<<std::endl;
         std::cin>>i1;
         hozzaad->setPszam(i1);
@@ -368,6 +326,10 @@ void ujrekord(Lista& listam)
     }
     else
     {
+        std::cout<<"Nev?"<<std::endl;
+        std::cin>>s1;
+        hozzaad->setNev(s1);
+
         std::cout<<"Alapitas eve?"<<std::endl;
         std::cin>>i1;
         hozzaad->setAlapitas(i1);
@@ -377,6 +339,32 @@ void ujrekord(Lista& listam)
         hozzaad->setDszam(i1);
 
     }
+
+
+
+    std::cout<<"Iranyitoszam?"<<std::endl;
+    std::cin>>i1;
+    hozzaad->setIszam(i1);
+
+    std::cout<<"Varos?"<<std::endl;
+    std::cin>>s1;
+    hozzaad->setVaros(s1);
+
+    std::cout<<"Utca?"<<std::endl;
+    std::cin>>s1;
+    hozzaad->setUtca(s1);
+
+    std::cout<<"Hazszam?"<<std::endl;
+    std::cin>>i1;
+    hozzaad->setHszam(i1);
+
+    std::cout<<"Telefonszam?"<<std::endl;
+    std::cin>>i1;
+    hozzaad->setMszam(i1);
+
+
+// ha a tipus 0, a cégekhez tartozó infókat kérjük be, ha 1 a személyekhez
+
 
     listam.ujrekord(hozzaad);
     std::cout<<"Uj nevjegy letrehozva"<<std::endl;
