@@ -5,12 +5,12 @@
 	<cstring>
 	"fgvheader.h"
 
-1494264837 f:\programok\c(++)\telefonkonyv\fgvheader.h
+1494270912 f:\programok\c(++)\telefonkonyv\fgvheader.h
 	<fstream>
 	<iostream>
 	<cstring>
 
-1494262107 source:f:\programok\c(++)\telefonkonyv\main.cpp
+1494266555 source:f:\programok\c(++)\telefonkonyv\main.cpp
 	<iostream>
 	<fstream>
 	<exception>

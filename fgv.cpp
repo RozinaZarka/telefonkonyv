@@ -81,9 +81,13 @@ std::istream& operator>>(std::istream & is, Sztring & s)
     is>>beolvas;
     s.setHossz(strlen(beolvas));
     s.setAdat(beolvas);*/
-    is >> s.getAdat();
-    s.setHossz(s.getHossz());
-
+    char * beolvas = new char[20];
+    is>>beolvas;
+    //std::cout<<beolvas;
+    s.setAdat(beolvas);
+    //is >> s.getAdat();
+    s.setHossz(strlen(s.getAdat()));
+    delete[] beolvas;
    // s.setHossz(i);
 
     return is;
@@ -104,15 +108,15 @@ Lista::~Lista()
 //KÉSZ
 void Szemely::kiir(std::ostream& os)
 {
-    os<<this->getTipus()<<std::endl;
+    os<<this->getNev()<<std::endl;
     os<<this->getVnev()<<std::endl;
-    os<<this->getKev()<<std::endl;
+    os<<this->getKnev()<<std::endl;
+    os<<this->getTipus()<<std::endl;
     os<<this->getIszam()<<std::endl;
     os<<this->getVaros()<<std::endl;
     os<<this->getUtca()<<std::endl;
     os<<this->getHszam()<<std::endl;
     os<<this->getMszam()<<std::endl;
-    os<<this->getNev()<<std::endl;
     os<<this->getPszam()<<std::endl;
     os<<std::endl;
 
@@ -324,14 +328,14 @@ void ujrekord(Lista& listam)
     Adat* hozzaad = nullptr;
     std::cout<<"Ceget (0) vagy szemelyt (1) szeretne felvenni?"<<std::endl;
     std::cin>>i1;
-    if (i1)
+    if (i1 == 1)
     {
         hozzaad = new Szemely;
     } else {
         hozzaad = new Ceg;
     }
     hozzaad->setTipus(i1);
- if (hozzaad->getTipus())
+ if (i1 == 1)
     {
         std::cout<<"Vezeteknev?"<<std::endl;
         std::cin>>s1;

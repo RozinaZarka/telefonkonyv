@@ -60,58 +60,18 @@ class Adat
 
 public:
 
-    Sztring getVaros()
-    {
-        return this->varos;
-    }
-    Sztring getUtca()
-    {
-        return this->utca;
-    }
-
-
-    int getIszam()
-    {
-        return this->iranyitoszam;
-    }
-    int getHszam()
-    {
-        return this->hazszam;
-    }
-    int getTipus()
-    {
-        return this->tipus;
-    }
-    int getMszam()
-    {
-        return this->munkahelyiszam;
-    }
-
-    void setTipus(int i)
-    {
-        this->tipus = i;
-    }
-
-    void setVaros(Sztring s)
-    {
-        this->varos = s;
-    }
-    void setUtca(Sztring s)
-    {
-        this->utca = s;
-    }
-    void setHszam(int i)
-    {
-        this->hazszam = i;
-    }
-    void setIszam(int i)
-    {
-        this->iranyitoszam = i;
-    }
-    void setMszam(int i)
-    {
-        this->munkahelyiszam = i;
-    }
+    Sztring getVaros(){return this->varos;}
+    Sztring getUtca(){return this->utca;}
+    int getIszam(){return this->iranyitoszam;}
+    int getHszam(){return this->hazszam;}
+    int getTipus(){return this->tipus;}
+    int getMszam(){return this->munkahelyiszam;}
+    void setTipus(int i){this->tipus = i;}
+    void setVaros(Sztring s){this->varos = s;}
+    void setUtca(Sztring s){this->utca = s;}
+    void setHszam(int i){this->hazszam = i;}
+    void setIszam(int i){this->iranyitoszam = i;}
+    void setMszam(int i){this->munkahelyiszam = i;}
     virtual void kiir(std::ostream& os) {};
     virtual void setDszam(int i) {} ;
     virtual int getDszam() {return 0 ;}
@@ -124,14 +84,8 @@ public:
 
     virtual void setKnev(Sztring s) {} ;
     virtual Sztring getKev() {return 0 ;}
-    void setNev(Sztring s)
-    {
-        this->nev = s;
-    }
-    Sztring getNev()
-    {
-        return this->nev;
-    }
+    void setNev(Sztring s){this->nev = s;}
+    Sztring getNev(){return this->nev;}
     virtual ~Adat() {};
 
 
@@ -146,31 +100,12 @@ class Szemely: public Adat
 
 public:
 
-    void setPszam(int i)
-    {
-        this->privatszam = i;
-    }
-    int getPszam()
-    {
-        return this->privatszam;
-    }
-
-    void setVnev(Sztring s)
-    {
-        this->vezeteknev = s;
-    }
-    Sztring getVnev()
-    {
-        return this->vezeteknev;
-    }
-     void setKnev(Sztring s)
-    {
-        this->keresztnev = s;
-    }
-    Sztring getKnev()
-    {
-        return this->keresztnev;
-    }
+    void setPszam(int i){this->privatszam = i;}
+    int getPszam(){ return this->privatszam;}
+    void setVnev(Sztring s){this->vezeteknev = s;}
+    Sztring getVnev(){return this->vezeteknev;}
+    void setKnev(Sztring s){this->keresztnev = s;}
+    Sztring getKnev(){return this->keresztnev;}
     void kiir(std::ostream& os);
     ~Szemely() {};
 };
@@ -182,23 +117,10 @@ class Ceg : public Adat
     int dolgozokszama;
 public:
 
-    void setDszam(int i)
-    {
-        this->dolgozokszama = i;
-    }
-    int getDszam()
-    {
-        return this->dolgozokszama;
-    }
-    void setAlapitas(int i)
-    {
-        this->alapitasiev = i;
-    }
-    int getAlapitas()
-    {
-        return this->alapitasiev;
-    }
-
+    void setDszam(int i){this->dolgozokszama = i;}
+    int getDszam(){return this->dolgozokszama;}
+    void setAlapitas(int i){this->alapitasiev = i;}
+    int getAlapitas(){return this->alapitasiev;}
     void kiir(std::ostream& os);
     ~Ceg() {};
 
@@ -212,14 +134,8 @@ public:
     Lista();
     void beolvas (std::ifstream backupfile);
     void torol(Sztring& torolni);
-    size_t getMeret()
-    {
-        return this->meret;
-    }
-    Adat** getTomb ()
-    {
-        return this->tomb;
-    }
+    size_t getMeret(){return this->meret;}
+    Adat** getTomb (){return this->tomb;}
     // viszaadja az új rekord indexét
     void ujrekord (Adat* hozzad);
     Adat* operator[] (size_t i);
