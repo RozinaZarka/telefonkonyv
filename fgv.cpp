@@ -8,14 +8,14 @@
 Sztring::Sztring(char const *szoveg)
 {
     hossz = strlen(szoveg);
-    adat = new char[hossz+1];
+    adat = new char[50];
     strcpy(adat, szoveg);
 }
 //KÉSZ
 Sztring::Sztring(Sztring const & orig)
 {
     hossz = orig.getHossz();
-    adat = new char[hossz+1];
+    adat = new char[50];
     strcpy(adat, orig.adat);
 }
 
@@ -72,10 +72,12 @@ std::ostream& operator<<(std::ostream & os, const Sztring & s)
 //KÉSZ
 std::istream& operator>>(std::istream & is, Sztring & s)
 {
-    char * beolvas = new char[20];
+    /*char * beolvas = new char[20];
     is>>beolvas;
     s.setHossz(strlen(beolvas));
-    s.setAdat(beolvas);
+    s.setAdat(beolvas);*/
+    is >> s.getAdat();
+    s.setHossz(strlen(s.getAdat()));
 
    // s.setHossz(i);
 

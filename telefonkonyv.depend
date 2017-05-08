@@ -46,3 +46,44 @@
 	<string>
 	<fstream>
 
+1494269977 source:c:\users\yashok\documents\github\telefonkonyv\fgv.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"fgvheader.h"
+
+1494269359 c:\users\yashok\documents\github\telefonkonyv\fgvheader.h
+	<fstream>
+	<iostream>
+	<cstring>
+
+1494269359 source:c:\users\yashok\documents\github\telefonkonyv\main.cpp
+	<iostream>
+	<fstream>
+	<exception>
+	"memtrace.h"
+	"gtest_lite.h"
+	"fgvheader.h"
+
+1494163015 c:\users\yashok\documents\github\telefonkonyv\memtrace.h
+	<new>
+	<stdlib.h>
+	<iostream>
+	<fstream>
+
+1494163015 c:\users\yashok\documents\github\telefonkonyv\gtest_lite.h
+	<cassert>
+	<cmath>
+	<cstring>
+	<limits>
+	<string>
+	<fstream>
+
+1494180628 source:c:\users\yashok\documents\github\telefonkonyv\memtrace.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<ctype.h>
+	"memtrace.h"
+
