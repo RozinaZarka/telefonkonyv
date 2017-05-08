@@ -203,7 +203,31 @@ void Lista::ujrekord (Adat* hozzaad)
 
 void Lista::torol(Sztring& torolni)
 {
-    try{
+    for (size_t s = 0; s < this->meret; s++) {
+        if (this->tomb[s]->getNev()== torolni) {
+            if (this->meret>1){
+                Adat** uj = new Adat*[this->meret-1];
+                size_t i = 0;
+                for (size_t t = 0; t < this->meret; t++){
+                    if (s == t){
+                        delete this->tomb[t];
+                    } else {
+                        uj[i] = this->tomb[t];
+                        i++;
+                    }
+                }
+                delete[] this->tomb;
+                this->tomb = uj;
+            } else {
+                delete this->tomb[0];
+                delete[] this->tomb;
+                this->tomb = nullptr;
+            }
+            this->meret--;
+        }
+    }
+
+    /*try{
 
  // vegiggyaloglok a tombon
          for (size_t s =0; s < this->meret; s++){
@@ -236,16 +260,13 @@ void Lista::torol(Sztring& torolni)
             }
             this->meret--;
             }
-
-
-
-    }
+        }
     }
     catch (std::exception &e)
     {
         std::cerr<<e.what()<<std::endl<<""<<std::endl;
 
-    }
+    }*/
 
 
 
