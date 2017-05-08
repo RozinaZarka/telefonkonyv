@@ -21,6 +21,11 @@ public:
     {
         return this->adat;
     }
+    size_t getHossz() const
+    {
+        return this->hossz;
+    }
+
     void setHossz(size_t s)
     {
         this->hossz =s;
@@ -45,7 +50,7 @@ std::istream & operator>>(std::istream & os, const Sztring & s);
 
 class Adat
 {
-
+    Sztring nev;
     int tipus; // 0 vagy 1 : Személy vagy cég
     Sztring varos;
     Sztring utca;
@@ -63,9 +68,7 @@ public:
     {
         return this->utca;
     }
-    virtual Sztring getNev(){
-        return Sztring();
-    };
+
 
     int getIszam()
     {
@@ -88,7 +91,7 @@ public:
     {
         this->tipus = i;
     }
-    virtual void setNev(Sztring s) {};
+
     void setVaros(Sztring s)
     {
         this->varos = s;
@@ -109,19 +112,26 @@ public:
     {
         this->munkahelyiszam = i;
     }
-    virtual void kiir(std::ostream& os) =0;
+    virtual void kiir(std::ostream& os) {};
     virtual void setDszam(int i) {} ;
     virtual int getDszam() {return 0 ;}
     virtual void setAlapitas(int i) {};
     virtual int getAlapitas() {return 0 ;}
     virtual void setPszam(int i) {};
     virtual int getPszam() {return 0 ;}
-    virtual void setBnev(Sztring s) {} ;
-    virtual Sztring getBnev() {return 0 ;}
     virtual void setVnev(Sztring s) {} ;
     virtual Sztring getVnev() {return 0 ;}
+
     virtual void setKnev(Sztring s) {} ;
     virtual Sztring getKev() {return 0 ;}
+    void setNev(Sztring s)
+    {
+        this->nev = s;
+    }
+    Sztring getNev()
+    {
+        return this->nev;
+    }
     virtual ~Adat() {};
 
 
@@ -132,7 +142,6 @@ class Szemely: public Adat
 {
     Sztring vezeteknev;
     Sztring keresztnev;
-    Sztring becenev;
     int privatszam;
 
 public:
@@ -145,14 +154,7 @@ public:
     {
         return this->privatszam;
     }
-    void setBnev(Sztring s)
-    {
-        this->becenev = s;
-    }
-    Sztring getBnev()
-    {
-        return this->becenev;
-    }
+
     void setVnev(Sztring s)
     {
         this->vezeteknev = s;
@@ -175,7 +177,7 @@ public:
 
 class Ceg : public Adat
 {
-    Sztring nev;
+
     int alapitasiev;
     int dolgozokszama;
 public:
@@ -196,14 +198,7 @@ public:
     {
         return this->alapitasiev;
     }
-    void setNev(Sztring s)
-    {
-        this->nev = s;
-    }
-    Sztring getNev()
-    {
-        return this->nev;
-    }
+
     void kiir(std::ostream& os);
     ~Ceg() {};
 

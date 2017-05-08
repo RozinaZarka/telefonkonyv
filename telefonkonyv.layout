@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="fgv.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6500" topLine="207" />
+		</Cursor>
+		<Folding>
+			<Collapse line="14" />
+			<Collapse line="22" />
+			<Collapse line="34" />
+			<Collapse line="39" />
+			<Collapse line="45" />
+			<Collapse line="54" />
+			<Collapse line="64" />
+			<Collapse line="153" />
+			<Collapse line="162" />
+		</Folding>
+	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="993" topLine="15" />
+			<Cursor1 position="872" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="fgvheader.h" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1075" topLine="33" />
 		</Cursor>
 	</File>
 	<File name="memtrace.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -14,31 +35,6 @@
 	<File name="memtrace.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="134" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="fgv.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1988" topLine="108" />
-		</Cursor>
-		<Folding>
-			<Collapse line="7" />
-			<Collapse line="14" />
-			<Collapse line="22" />
-			<Collapse line="34" />
-			<Collapse line="39" />
-			<Collapse line="45" />
-			<Collapse line="54" />
-			<Collapse line="64" />
-			<Collapse line="153" />
-			<Collapse line="187" />
-			<Collapse line="241" />
-			<Collapse line="251" />
-			<Collapse line="272" />
-		</Folding>
-	</File>
-	<File name="fgvheader.h" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1367" topLine="59" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

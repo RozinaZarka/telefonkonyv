@@ -33,11 +33,9 @@ int main(int argc, char* argv[])
         case 'U':
         case 'u':
             ujrekord(listam);
-            std::cout<<"itt nem szaródik el 6"<<std::endl;
             break;
         case 'l':
         case 'L':
-
             std::cout<<listam;
             break;
         case 't':
@@ -54,14 +52,15 @@ int main(int argc, char* argv[])
         }
 
     }
-    std::cout<<"itt nem szaródik el 26"<<std::endl;
     std::cout<<"Viszontlatasra"<<std::endl;
 
     std::ofstream bpfile;
     bpfile.open("backup.txt");
+    std::cout<<"Viszontlatasra2"<<std::endl;
     bpfile<<listam;
+    std::cout<<"Viszontlatasra3"<<std::endl;
     bpfile.close();
-
+   std::cout<<"Viszontlatasra4"<<std::endl;
    } catch (std::exception& e){
        std::cerr<<e.what()<<"vegre megtudjuk mi a hiba";
    }

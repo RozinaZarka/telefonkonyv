@@ -4,6 +4,7 @@
 #include "fgvheader.h"
 
 //KÉSZ
+
 Sztring::Sztring(char const *szoveg)
 {
     hossz = strlen(szoveg);
@@ -13,7 +14,7 @@ Sztring::Sztring(char const *szoveg)
 //KÉSZ
 Sztring::Sztring(Sztring const & orig)
 {
-    hossz = orig.hossz;
+    hossz = orig.getHossz();
     adat = new char[hossz+1];
     strcpy(adat, orig.adat);
 }
@@ -104,7 +105,7 @@ void Szemely::kiir(std::ostream& os)
     os<<this->getUtca()<<std::endl;
     os<<this->getHszam()<<std::endl;
     os<<this->getMszam()<<std::endl;
-    os<<this->getBnev()<<std::endl;
+    os<<this->getNev()<<std::endl;
     os<<this->getPszam()<<std::endl;
     os<<std::endl;
 
@@ -143,8 +144,7 @@ std:: ostream& operator<< (std::ostream& os, Lista& listam)
     if (!listam.getMeret()) os<<"Nincs egy nevjegye sem"<<std::endl;
     for (size_t s = 0; s< listam.getMeret(); s++)
     {
-        os<<listam[s]<<std::endl;
-
+        os<<listam[s];
     }
 
     return os;
@@ -164,23 +164,23 @@ void Lista::ujrekord (Adat* hozzaad)
     Adat** uj = new Adat*[this->meret+1];
    if (this->meret == 0){
     uj[0]= hozzaad;
-    std::cout<<"itt nem szaródik el 0"<<std::endl;
+
     delete[] this->tomb;
     this->tomb = uj;
    } else {
        for (size_t s = 0; s < this->meret; s++){
         uj[s]= this->tomb[s];
-        delete this->tomb[s];
-        std::cout<<"itt nem szaródik el 1  "<<s<<std::endl;
+         //delete this->tomb[s];
+        }
+
+
        }
-        std::cout<<"itt nem szaródik el 2"<<std::endl;
+
         uj[this->meret] = hozzaad;
         delete[] this->tomb;
         this->tomb = uj;
-   }
-   this->meret = this->meret +1;
-std::cout<<"itt nem szaródik el 10"<<std::endl;
 
+   this->meret = this->meret +1;
 
 }
 
@@ -204,16 +204,16 @@ void Lista::torol(Sztring& torolni)
                                  t++;
                             }  // kivéve amit torolni akarok
                             uj[t] = this->tomb[t];
-                            delete this->tomb[t];
+                            delete[] this->tomb;
                         }
                         // torlom a regi tombot
-                        delete[] this->tomb;
+                       delete[] this->tomb;
                         // az uj tombot berakom a listaba
                         this->tomb = uj;
 
             }  else {
 
-              delete this->tomb[0];
+               // delete this->tomb[0];
               delete[] this->tomb;
               this->tomb = nullptr;
             }
@@ -274,7 +274,12 @@ void torles(Lista& listam)
     try {
     if (listam.getMeret() == 0) throw std::exception();
     Sztring s1;
-    std::cout<<"Milyen rekordot szeretne torolni? Adja meg a nevet!"<<std::endl;
+    /*
+    int i1;
+    std::cout<<"Ceget(0) vagy szemely (1) szeretne torolni?"<<std::endl;
+    std::cin>>i1;
+    */
+    std::cout<<"Milyen rekordot szeretne torolni? Ceg eseten adja meg a nevet, szemely esetén a becenevet"<<std::endl;
     std::cin>>s1;
     listam.torol(s1);
     std::cout<<"Rekord torolve"<<std::endl;
@@ -298,7 +303,7 @@ void torles(Lista& listam)
 void ujrekord(Lista& listam)
 {
     int i1;
-    Sztring s1;
+    Sztring s1,s2,s3,s4;
     Adat* hozzaad = nullptr;
     std::cout<<"Ceget (0) vagy szemelyt (1) szeretne felvenni?"<<std::endl;
     std::cin>>i1;
@@ -316,8 +321,13 @@ void ujrekord(Lista& listam)
         hozzaad->setVnev(s1);
 
         std::cout<<"Keresztnev?"<<std::endl;
-        std::cin>>s1;
-        hozzaad->setKnev(s1);
+        std::cin>>s2;
+        hozzaad->setKnev(s2);
+
+        std::cout<<"Becenev?"<<std::endl;
+        std::cin>>s3;
+        hozzaad->setNev(s3);
+
 
         std::cout<<"Privat telefonszam?"<<std::endl;
         std::cin>>i1;
@@ -351,8 +361,8 @@ void ujrekord(Lista& listam)
     hozzaad->setVaros(s1);
 
     std::cout<<"Utca?"<<std::endl;
-    std::cin>>s1;
-    hozzaad->setUtca(s1);
+    std::cin>>s4;
+    hozzaad->setUtca(s4);
 
     std::cout<<"Hazszam?"<<std::endl;
     std::cin>>i1;
