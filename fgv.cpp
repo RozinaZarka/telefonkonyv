@@ -8,14 +8,14 @@
 Sztring::Sztring(char const *szoveg)
 {
     hossz = strlen(szoveg);
-    adat = new char[50];
+    //adat = new char[50];
     strcpy(adat, szoveg);
 }
 //KÉSZ
 Sztring::Sztring(Sztring const & orig)
 {
     hossz = orig.getHossz();
-    adat = new char[50];
+    //adat = new char[50];
     strcpy(adat, orig.adat);
 }
 
@@ -24,11 +24,15 @@ Sztring& Sztring::operator=(Sztring const & orig)
 {
     if (this != &orig)
     {
+        strcpy(adat, orig.adat);
+    }
+    /*if (this != &orig)
+    {
         delete[] adat;
         hossz = orig.hossz;
         adat = new char[hossz+1];
         strcpy(adat, orig.adat);
-    }
+    }*/
     return *this;
 }
 //KÉSZ
@@ -46,9 +50,9 @@ char const & Sztring::operator[] (size_t idx) const
 Sztring Sztring::operator+(Sztring const & rhs) const
 {
     Sztring uj;
-    delete[] uj.adat;
+    //delete[] uj.adat;
     uj.hossz = this->hossz + rhs.hossz;
-    uj.adat = new char[uj.hossz + 1];
+    //uj.adat = new char[uj.hossz + 1];
     strcpy(uj.adat, this->adat);
     strcat(uj.adat, rhs.adat);
     return uj;
@@ -58,8 +62,9 @@ bool Sztring:: operator== (Sztring & rhs) const{
 }
 void Sztring::setAdat(char * uj)
 {
-    delete[] this->adat;
-    this->adat =uj;
+    strcpy(adat, uj);
+    //delete[] this->adat;
+    //this->adat =uj;
 }
 //KÉSZ
 std::ostream& operator<<(std::ostream & os, const Sztring & s)
@@ -77,7 +82,7 @@ std::istream& operator>>(std::istream & is, Sztring & s)
     s.setHossz(strlen(beolvas));
     s.setAdat(beolvas);*/
     is >> s.getAdat();
-    s.setHossz(strlen(s.getAdat()));
+    s.setHossz(s.getHossz());
 
    // s.setHossz(i);
 
@@ -164,10 +169,20 @@ Adat* Lista:: operator[] (size_t i)
 void Lista::ujrekord (Adat* hozzaad)
 {
     Adat** uj = new Adat*[this->meret+1];
-   if (this->meret == 0){
+
+    if (this->meret != 0){
+        for (size_t s = 0; s < this->meret; s++){
+            uj[s]= this->tomb[s];
+        }
+    }
+
+    uj[this->meret] = hozzaad;
+    delete[] this->tomb;
+    this->tomb = uj;
+    this->meret = this->meret +1;
+   /*if (this->meret == 0){
     uj[0]= hozzaad;
 
-    delete[] this->tomb;
     this->tomb = uj;
    } else {
        for (size_t s = 0; s < this->meret; s++){
@@ -182,7 +197,7 @@ void Lista::ujrekord (Adat* hozzaad)
         delete[] this->tomb;
         this->tomb = uj;
 
-   this->meret = this->meret +1;
+   this->meret = this->meret +1;*/
 
 }
 

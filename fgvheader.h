@@ -9,13 +9,13 @@ class Sztring
 {
 private:
     size_t hossz;   // lezáró nulla nélkül
-    char* adat;     // lezáró nullával együtt
+    char adat[50];     // lezáró nullával együtt
 
 public:
     Sztring(char const *szoveg = "");
     ~Sztring()
     {
-        delete[] adat;
+        //delete[] adat;
     }
     char* getAdat()
     {
