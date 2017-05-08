@@ -9,14 +9,10 @@
 
 int main(int argc, char* argv[])
 {
-   try {// setbuf(stdout, 0);
+   try {
     Lista listam;
-   /* std::ifstream backupfile;
-    backupfile.open("backupfile.txt);
-    listam.beolvas(backupfile);
-    */
     char x = 'l';
-    while (!(x == 'e' || x== 'E' || x == '\032') )
+    while (!(x == 'e' || x== 'E') && (std::cin) )
     {
 
         std::cout<< "Mit szeretnel tenni?"<<std::endl
@@ -56,13 +52,10 @@ int main(int argc, char* argv[])
 
     std::ofstream bpfile;
     bpfile.open("backup.txt");
-    std::cout<<"Viszontlatasra2"<<std::endl;
     bpfile<<listam;
-    std::cout<<"Viszontlatasra3"<<std::endl;
     bpfile.close();
-   std::cout<<"Viszontlatasra4"<<std::endl;
    } catch (std::exception& e){
-       std::cerr<<e.what()<<"vegre megtudjuk mi a hiba";
+       std::cerr<<e.what();
    }
     return 0;
 }

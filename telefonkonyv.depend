@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1494271531 source:f:\programok\c(++)\telefonkonyv\fgv.cpp
+1494272560 source:f:\programok\c(++)\telefonkonyv\fgv.cpp
 	<iostream>
 	<fstream>
 	<cstring>
