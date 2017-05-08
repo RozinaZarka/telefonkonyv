@@ -68,8 +68,22 @@ std::ostream& operator<<(std::ostream & os, const Sztring & s)
 std::istream& operator>>(std::istream & is, Sztring & s)
 {
 
-    is>>s.getAdat();
-    s.setHossz(strlen(s.getAdat()));
+    char* uj;
+    int i =1;
+    char betu = getchar();
+
+    while (betu!= '\n'){
+      uj = new char[i];
+      for (int j = 0;j <i; j++){
+        uj[j] = s.getAdat()[j];
+        }
+        uj[i] = betu;
+        betu = getchar();
+        s.setAdat(uj);
+        delete[] uj;
+        i++;
+    }
+    s.setHossz(i);
 
     return is;
 }//KÉSZ
@@ -302,10 +316,10 @@ void torles(Lista& listam)
 void ujrekord(Lista& listam)
 {
     int i1;
-    std::cout<<"Ceget (0) vagy szemelyt (1) szeretne felvenni?"<<std::endl;
-    std::cin>>i1;
     Sztring s1;
     Adat* hozzaad = nullptr;
+    std::cout<<"Ceget (0) vagy szemelyt (1) szeretne felvenni?"<<std::endl;
+    std::cin>>i1;
     if (i1)
     {
         hozzaad = new Szemely;
@@ -318,10 +332,11 @@ void ujrekord(Lista& listam)
     std::cin>>s1;
     hozzaad->setNev(s1);
 
+
     std::cout<<"Iranyitoszam?"<<std::endl;
     std::cin>>i1;
     hozzaad->setIszam(i1);
-
+/*
     std::cout<<"Varos?"<<std::endl;
     std::cin>>s1;
     hozzaad->setVaros(s1);
@@ -329,7 +344,7 @@ void ujrekord(Lista& listam)
     std::cout<<"Utca?"<<std::endl;
     std::cin>>s1;
     hozzaad->setUtca(s1);
-
+ */
     std::cout<<"Hazszam?"<<std::endl;
     std::cin>>i1;
     hozzaad->setHszam(i1);
@@ -342,10 +357,10 @@ void ujrekord(Lista& listam)
 // ha a tipus 0, a cégekhez tartozó infókat kérjük be, ha 1 a személyekhez
     if (hozzaad->getTipus())
     {
-        std::cout<<"Becenev?"<<std::endl;
+  /*     std::cout<<"Becenev?"<<std::endl;
         std::cin>>s1;
         hozzaad->setBnev(s1);
-
+*/
         std::cout<<"Privat telefonszam?"<<std::endl;
         std::cin>>i1;
         hozzaad->setPszam(i1);
@@ -364,7 +379,6 @@ void ujrekord(Lista& listam)
     }
 
     listam.ujrekord(hozzaad);
-
     std::cout<<"Uj nevjegy letrehozva"<<std::endl;
 
 }

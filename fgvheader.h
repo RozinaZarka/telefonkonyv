@@ -25,6 +25,10 @@ public:
     {
         this->hossz =s;
     }
+    void setAdat(char * uj)
+    {
+        this->adat =uj;
+    }
     Sztring(Sztring const & orig) ;
     Sztring & operator=(Sztring const & orig);
     size_t size() const ;
