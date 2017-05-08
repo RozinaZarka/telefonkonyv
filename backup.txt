@@ -1,15 +1,1 @@
-<<<<<<< HEAD
-
-
-
-1
-1
-
-
-1
-1
-1
-
-=======
 Nincs egy nevjegye sem
->>>>>>> origin/master

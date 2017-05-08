@@ -26,6 +26,7 @@ Sztring& Sztring::operator=(Sztring const & orig)
     {
         strcpy(adat, orig.adat);
     }
+    hossz = orig.hossz;
     /*if (this != &orig)
     {
         delete[] adat;
@@ -69,8 +70,10 @@ void Sztring::setAdat(char * uj)
 //KÉSZ
 std::ostream& operator<<(std::ostream & os, const Sztring & s)
 {
+
     for (size_t i = 0; i != s.size(); ++i)
-        os << s[i];
+         os<<s[i];
+
 
     return os;
 }

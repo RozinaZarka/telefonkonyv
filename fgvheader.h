@@ -43,7 +43,7 @@ public:
     bool operator== (Sztring & rhs) const;
 };
 
-std::ostream & operator<<(std::ostream & os, const Sztring & s);
+std::ostream & operator<<(std::ostream & os,const Sztring & s);
 std::istream & operator>>(std::istream & os, const Sztring & s);
 
 
